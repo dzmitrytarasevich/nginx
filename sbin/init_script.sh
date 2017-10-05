@@ -128,20 +128,4 @@ case "$1" in
     *)
         echo $"Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest}"
         exit 2
-esac[Unit]
-Description=nginx - high performance web server
-Documentation=http://nginx.org/en/docs/
-After=network-online.target remote-fs.target nss-lookup.target
-Wants=network-online.target
-
-[Service]
-Type=forking
-PIDFile=/home/dzmitry/nginx/logs/nginx.pid
-ExecStartPre=/home/dzmitry/nginx/sbin/nginx -t -c /home/dzmitry/nginx/conf/nginx.conf
-ExecStart=/home/dzmitry/nginx/sbin/nginx -c /home/dzmitry/nginx/conf/nginx.conf
-ExecReload=/bin/kill -s HUP $MAINPID
-ExecStop=/bin/kill -s TERM $MAINPID
-
-[Install]
-WantedBy=multi-user.target
-
+esac
